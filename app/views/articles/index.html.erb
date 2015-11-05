@@ -1,0 +1,31 @@
+<div class="container">
+<h1 >Welcome to Task 4</h1>
+</div>
+<hr />
+<div class="container">
+<p class="btn btn-success"><%= link_to 'Add Article', new_article_path %></p>
+</div>
+<br />
+<div class="container">
+<% @articles.each do |article| %>
+<div class="row">
+	<div class="col-sm-2 col-md-2">
+		<div class="thumbnail">
+			<%= link_to (image_tag article.photo.url(:thumb)), article_path(article.id) %>
+		<div class="caption">
+			<strong><%= article.title %></strong>
+			<p> 
+				<%= article.content.truncate(20) %>
+				<%= link_to 'read more', article_path(article.id)%>
+			</p>
+			<strong>status: <%= article.status %></strong>
+			<p><span><%= link_to 'edit', edit_article_path(article.id)%></span>
+			<span> | </span>
+			<span><%= link_to 'delete', article_path(article.id), method: "DELETE", data: {confirm: 'Delete this article?'} %></span>
+			</p>
+		</div>
+	  </div>
+   </div>
+</div>
+<% end %>
+</div>
